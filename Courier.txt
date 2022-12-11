@@ -1,0 +1,3 @@
+2
+"Ivan ivanov", 34322344, 10, 5, 3
+"Dmitriy Fedorov", 6722644, 13, 3, 6
