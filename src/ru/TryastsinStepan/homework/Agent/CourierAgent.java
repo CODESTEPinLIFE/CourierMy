@@ -1,4 +1,4 @@
-package ru.TryastsinStepan.homework.CourierAgent;
+package ru.TryastsinStepan.homework.Agent;
 
 import ru.TryastsinStepan.homework.courier.Courier;
 import ru.TryastsinStepan.homework.order.Order;
@@ -7,18 +7,13 @@ import ru.TryastsinStepan.homework.purpose.Purpose;
 import ru.TryastsinStepan.homework.schedule.Schedule;
 
 public class CourierAgent {
-    Order order;
-    Courier courier;
 
-    public CourierAgent() {
-    }
+    public Order order;
+    public Courier courier;
+    Schedule schedule = new Schedule();
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
+    public CourierAgent(Courier courier) {
+this.courier = courier;
     }
 
     public Courier getCourier() {
@@ -31,6 +26,16 @@ public class CourierAgent {
 
     public  double distanceToCollection ;
     public  double  distanceToDelivery ;
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
+    }
+
+    public CourierAgent() {
+    }
 
     public double getDistanceToCollection() {
         return distanceToCollection;
@@ -53,6 +58,15 @@ public class CourierAgent {
     Point pointCollection = null;
     Point pointDelivery = null;
     Point startPointCourier = null;
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
     public double timeExecution(Order order) {
 
         double distanceToCollectionX = 0;
@@ -61,10 +75,7 @@ public class CourierAgent {
         double distanceToDeliveryX = 0;
         double distanceToDeliveryY = 0;
         double distanceToDelivery = 0;
-        if (courier.scheduleCourier.purposes.length == 0) {
-            startPointCourier  = courier.getPoint();
 
-        } else {
             distanceToCollectionX = (order.getCollectionPoint().getX() - courier.getPoint().getX());
             distanceToCollectionY = (order.getCollectionPoint().getY() - courier.getPoint().getY());
             pointCollection = new Point(distanceToCollectionX,distanceToCollectionY);
@@ -86,20 +97,19 @@ public class CourierAgent {
 
             timeToCollection = (long) (distanceToCollection / courier.getSpeed());
             timeToDelivery = (long) (distanceToDelivery / courier.getSpeed());
-        }
+
         startPointCourier =  pointDelivery ;
-        setOrder(order);
+
         return   timeToCollection + timeToDelivery;
 
     }
-    public Schedule addOrder( Courier courier[], int time){
-    Purpose purpose[] = new Purpose[2];
-        Schedule schedule = null;
+    public Schedule addOrder( Order order, int time){
+    Purpose purpose[] = new Purpose[1];
     for(int i = 0 ;i<purpose.length;i++) {
-        purpose[i] = new Purpose(courier[i], order, pointDelivery, time, getDistanceToDelivery() + getDistanceToCollection());
-         schedule = new Schedule(purpose);
+        purpose[i] = new Purpose(getCourier(), order, pointDelivery, time, getDistanceToDelivery() + getDistanceToCollection());
     }
-
+        schedule = new Schedule(purpose);
+        setSchedule(schedule);
     return  schedule;
     }
 }

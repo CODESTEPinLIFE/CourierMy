@@ -3,6 +3,7 @@ package ru.TryastsinStepan.homework.reader;
 import ru.TryastsinStepan.homework.courier.Courier;
 import ru.TryastsinStepan.homework.point.Point;
 import ru.TryastsinStepan.homework.purpose.Purpose;
+import ru.TryastsinStepan.homework.schedule.Schedule;
 
 import java.io.*;
 
@@ -27,7 +28,7 @@ public class PurposeReader {
                      int y = Integer.parseInt(split[4]);
                      Point point = new Point(x,y);
 
-                     Courier courier = new Courier(name,age,speed,point);
+                     Courier courier = new Courier(name,age,speed,point,new Schedule());
                      couriers[index-1] = courier;
 
 

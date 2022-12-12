@@ -71,7 +71,7 @@ public class Order {
                 ", Времемя выполнения " + timeMoment +
                 ", Назначение заказа " + purposeOrder;
     }
-    public boolean checkOrder() {
-        return purposeOrder != null ? true : false;
+    public int checkOrder() {
+        return purposeOrder != null ? 1 : 0;
     }
 }

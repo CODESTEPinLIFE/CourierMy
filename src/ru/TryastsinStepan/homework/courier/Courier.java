@@ -15,12 +15,12 @@ public class Courier {
     public Courier() {
     }
 
-    public Courier(String nameSurnameFatherland, long id, double speed, Point startPosition) {
+    public Courier(String nameSurnameFatherland, long id, double speed, Point startPosition,Schedule schedule) {
         this.nameSurnameFatherland = nameSurnameFatherland;
         this.id = id;
         this.speed = speed;
         this.startPosition = startPosition;
-        this.scheduleCourier = null;
+        this.scheduleCourier =schedule;
     }
 public Point getPoint(){
         return this.startPosition;
